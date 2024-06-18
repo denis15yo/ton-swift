@@ -11,12 +11,13 @@ import BigInt
 public struct JettonTransferMessage {
     public static func internalMessage(jettonAddress: Address,
                                        amount: BigInt,
+                                       tonValue: BigInt? = nil,
                                        bounce: Bool,
                                        to: Address,
                                        from: Address,
                                        comment: String? = nil) throws -> MessageRelaxed {
         let forwardAmount = BigUInt(stringLiteral: "1")
-        let jettonTransferAmount = BigUInt(stringLiteral: "640000000")
+        let jettonTransferAmount = tonValue?.magnitude ?? BigUInt(stringLiteral: "640000000")
         let queryId = UInt64(Date().timeIntervalSince1970)
       
         var commentCell: Cell?
