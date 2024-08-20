@@ -51,8 +51,15 @@ public struct WalletTransfer {
     public func signMessage(signer: WalletTransferSigner) throws -> Cell {
         let signature = try signer.signMessage(signingMessage.endCell().hash())
         let body = Builder()
-        try body.store(data: signature)
-        try body.store(signingMessage)
+        
+        switch signaturePosition {
+        case .front:
+            try body.store(data: signature)
+            try body.store(signingMessage)
+        case .tail:
+            try body.store(signingMessage)
+            try body.store(data: signature)
+        }
         
         return try body.endCell()
     }
