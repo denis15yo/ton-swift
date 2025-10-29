@@ -12,7 +12,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/attaswift/BigInt", .exact("5.3.0")),
-        .package(url: "https://github.com/bitmark-inc/tweetnacl-swiftwrap", .upToNextMajor(from: "1.0.0"))
+        .package(url: "https://github.com/denis15yo/tweetnacl-swiftwrap", branch: "master")
     ],
     targets: [
         .target(
